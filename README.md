@@ -15,11 +15,11 @@ CORS means "Cross-Origin Resource Sharing", which your can find more info (here)
 }
 ```
 
-For any http.Handler x, replace it with c.Handler(x), then the handler will have the ability of handling CORS support.
+For any `http.Handler` x, just replace it with `c.Handler(x)`, then the handler will have the ability of handling CORS request.
 
 ###### More:
 
-All the features described in this (article)[http://www.html5rocks.com/en/tutorials/cors/] and a TL;DR (version)[http://www.html5rocks.com/static/images/cors_server_flowchart.png]
+All the features described in this article[www.html5rocks.com/en/tutorials/cors/] and a TL;DR version[http://www.html5rocks.com/static/images/cors_server_flowchart.png]
 
 So, all the 'Access-Control' parameters can be set by this:
 
@@ -41,5 +41,6 @@ Important: SetAllowHeaders () must be called with a 'origin' header.
 
 ##### How I test: (The state of the project)
 
-In fact, this code is unstable now, I have only tested with www.test-cors.org, 
+In fact, this code is unstable now, I have only tested with www.test-cors.org.
+
 It works for me.
