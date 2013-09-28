@@ -17,6 +17,15 @@ CORS means "Cross-Origin Resource Sharing", which your can find more info here[h
 
 For any `http.Handler` x, just replace it with `c.Handler(x)`, then the handler will have the ability of handling CORS request.
 
+###### Installation:
+
+Install with `go get` command:
+
+```
+go get github.com/semicircle/gocors
+```
+The Go distribution is the only dependency.:wq
+
 ###### More:
 
 All the features described in this article[www.html5rocks.com/en/tutorials/cors/] and a TL;DR version[http://www.html5rocks.com/static/images/cors_server_flowchart.png]
