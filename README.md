@@ -5,7 +5,7 @@ A tiny toolkit for Go CORS support.
 
 ### Explain:
 
-CORS means "Cross-Origin Resource Sharing", which your can find more info (here)[http://http://enable-cors.org/]
+CORS means "Cross-Origin Resource Sharing", which your can find more info here[http://enable-cors.org/]
 
 ### Usage:
 
