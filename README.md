@@ -3,7 +3,7 @@ gocors
 
 A tiny toolkit for Go CORS support.
 
-### Explain:
+### Explaination:
 
 CORS means "Cross-Origin Resource Sharing", which your can find more info here[http://enable-cors.org/]
 
@@ -17,7 +17,7 @@ CORS means "Cross-Origin Resource Sharing", which your can find more info here[h
 
 For any `http.Handler` x, just replace it with `c.Handler(x)`, then the handler will have the ability of handling CORS request.
 
-###### Installation:
+### Installation:
 
 Install with `go get` command:
 
@@ -26,7 +26,7 @@ go get github.com/semicircle/gocors
 ```
 The Go distribution is the only dependency.:wq
 
-###### More:
+### More:
 
 All the features described in this article[www.html5rocks.com/en/tutorials/cors/] and a TL;DR version[http://www.html5rocks.com/static/images/cors_server_flowchart.png]
 
@@ -48,7 +48,7 @@ So, all the 'Access-Control' parameters can be set by this:
 
 Important: SetAllowHeaders () must be called with a 'origin' header.
 
-##### How I test: (The state of the project)
+### How I test: (The state of the project)
 
 In fact, this code is unstable now, I have only tested with www.test-cors.org.
 
