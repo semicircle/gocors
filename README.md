@@ -3,7 +3,7 @@ gocors
 
 A tiny toolkit for Go CORS support.
 
-### Explaination:
+### Explanation:
 
 CORS means "Cross-Origin Resource Sharing", which your can find more info here[http://enable-cors.org/]
 
@@ -57,7 +57,7 @@ It works for me.
 
 This piece of code designed to work with a "nice" browser. A 'nice' browser means it follows the flow-chart of the CORS in the communication.So, if any request that didn't obey the Access-Control rules, they will NOT be denied. 
 
-In other words, Gocors just tell a 'nice' browser : you can make a Cross Domain request, and is NOT responsible of any security issue.
+In other words, Gocors just tells a 'nice' browser: "you can make a Cross Domain request", and is NOT responsible of any security issue.
 
 This is because checking if the request is valid is meaningless, and any program, spider or so, can make a "non Cross Domain" request directly.
 
