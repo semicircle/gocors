@@ -3,7 +3,7 @@ gocors
 
 A tiny toolkit for Go CORS support.
 
-### Explanation:
+### <EM></EM>xplanation:
 
 CORS means "Cross-Origin Resource Sharing", which your can find more info here[http://enable-cors.org/]
 

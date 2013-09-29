@@ -1,6 +1,7 @@
 package gocors
 
 import (
+	"io"
 	"log"
 	"net/http"
 	"strconv"
@@ -104,7 +105,8 @@ func (cors *Cors) Handler(h http.Handler) http.Handler {
 
 func (cors *Cors) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	if origin := r.Header.Get("Origin"); origin == "" {
-		cors.corsNotValid(w, r)
+		//cors.corsNotValid(w, r)
+		cors.userHandler.ServeHTTP(w, r)
 		return
 	} else if r.Method != "OPTIONS" {
 		//actual request.
@@ -161,6 +163,7 @@ func (cors *Cors) preflightRequest(w http.ResponseWriter, r *http.Request) {
 
 func (cors *Cors) corsNotValid(w http.ResponseWriter, r *http.Request) {
 	r.Header.Set("Content-Type", "text/html; charset=utf-8")
+	io.WriteString(w, "CORS Request Invalid")
 	return
 }
 
