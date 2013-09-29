@@ -99,8 +99,8 @@ func (cors *Cors) AllowCredentials() bool {
 }
 
 func (cors *Cors) Handler(h http.Handler) http.Handler {
-	//cors = &Cors{cors.allowOrigin, cors.allowMethods, cors.allowHeaders, cors.allowCredentials, cors.exposeHeaders, cors.maxAge, h}
-	cors.userHandler = h
+	cors = &Cors{cors.allowOrigin, cors.allowMethods, cors.allowHeaders, cors.allowCredentials, cors.exposeHeaders, cors.maxAge, h}
+	//cors.userHandler = h
 	return cors
 }
 
