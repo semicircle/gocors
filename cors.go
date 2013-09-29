@@ -99,7 +99,8 @@ func (cors *Cors) AllowCredentials() bool {
 }
 
 func (cors *Cors) Handler(h http.Handler) http.Handler {
-	cors = &Cors{cors.allowOrigin, cors.allowMethods, cors.allowHeaders, cors.allowCredentials, cors.exposeHeaders, cors.maxAge, h}
+	//cors = &Cors{cors.allowOrigin, cors.allowMethods, cors.allowHeaders, cors.allowCredentials, cors.exposeHeaders, cors.maxAge, h}
+	cors.userHandler = h
 	return cors
 }
 
@@ -133,6 +134,7 @@ func (cors *Cors) preflightRequest(w http.ResponseWriter, r *http.Request) {
 	}
 	methods := strings.Split(strings.TrimSpace(acrm), ",")
 	for _, m := range methods {
+		m = strings.TrimSpace(m)
 		if _, ok := cors.allowMethods[m]; !ok {
 			cors.corsNotValid(w, r)
 			log.Printf("Access-Control-Request-Method: %s is not supported", m)
@@ -144,9 +146,11 @@ func (cors *Cors) preflightRequest(w http.ResponseWriter, r *http.Request) {
 	if acrh != "" {
 		headers := strings.Split(strings.TrimSpace(acrh), ",")
 		for _, h := range headers {
+			h = strings.TrimSpace(h)
 			if _, ok := cors.allowHeaders[h]; !ok {
 				cors.corsNotValid(w, r)
-				log.Printf("Access-Control-Request-Headers: %s is not supported ", h)
+				log.Printf("Access-Control-Request-Headers: `%s` is not supported \n", h)
+				log.Printf("cors.allowHeaders: `%v`\n", cors.allowHeaders)
 				return
 			}
 		}
