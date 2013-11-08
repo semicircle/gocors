@@ -28,9 +28,12 @@ func New() *Cors {
 	return c
 }
 
-func arrayToSet(array []string) map[string]bool {
+func arrayToSet(array []string, caseInsen bool) map[string]bool {
 	ret := make(map[string]bool, len(array))
 	for _, v := range array {
+		if caseInsen {
+			v = strings.ToLower(v)
+		}
 		ret[v] = true
 	}
 	return ret
@@ -63,7 +66,7 @@ func (cors *Cors) MaxAge() int {
 }
 
 func (cors *Cors) SetAllowMethods(methods []string) *Cors {
-	cors.allowMethods = arrayToSet(methods)
+	cors.allowMethods = arrayToSet(methods, false)
 	return cors
 }
 
@@ -72,7 +75,7 @@ func (cors *Cors) AllowMethods() []string {
 }
 
 func (cors *Cors) SetAllowHeaders(headers []string) *Cors {
-	cors.allowHeaders = arrayToSet(headers)
+	cors.allowHeaders = arrayToSet(headers, true)
 	return cors
 }
 
@@ -100,7 +103,7 @@ func (cors *Cors) AllowCredentials() bool {
 
 func (cors *Cors) Handler(h http.Handler) http.Handler {
 	cors = &Cors{cors.allowOrigin, cors.allowMethods, cors.allowHeaders, cors.allowCredentials, cors.exposeHeaders, cors.maxAge, h}
-	//cors.userHandler = h
+	//`cors.userHandler = h
 	return cors
 }
 
@@ -146,7 +149,7 @@ func (cors *Cors) preflightRequest(w http.ResponseWriter, r *http.Request) {
 	if acrh != "" {
 		headers := strings.Split(strings.TrimSpace(acrh), ",")
 		for _, h := range headers {
-			h = strings.TrimSpace(h)
+			h = strings.ToLower(strings.TrimSpace(h))
 			if _, ok := cors.allowHeaders[h]; !ok {
 				cors.corsNotValid(w, r)
 				log.Printf("Access-Control-Request-Headers: `%s` is not supported \n", h)
